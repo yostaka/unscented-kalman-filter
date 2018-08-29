@@ -228,6 +228,9 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
     long x_size = x_.size();
     MatrixXd I = MatrixXd::Identity(x_size, x_size);
     P_ = (I - K * H) * P_;
+
+    float nis = (z - z_pred).transpose() * S.inverse() * (z - z_pred);
+    cout << "Lidar NIS = " << nis << endl;
 }
 
 /**
@@ -260,6 +263,9 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
         meas_package.raw_measurements_[2];
 
     UpdateStateWithRadarMeasurement(z, z_pred, S_pred, Tc);
+
+    float nis = (z - z_pred).transpose() * S_pred.inverse() * (z - z_pred);
+    cout << "Radar NIS = " << nis << endl;
 
 }
 
