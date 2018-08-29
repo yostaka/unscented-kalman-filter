@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -Wall -Wall -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/unitTests.dir/Tests.cpp.o  -o unitTests  -L/usr/local/opt/openssl/lib  -L"/usr/local/Cellar/libuv/1*/lib" -Wl,-rpath,/usr/local/opt/openssl/lib -Wl,-rpath,"/usr/local/Cellar/libuv/1*/lib" -lgtest -lgtest_main -lpthread 
