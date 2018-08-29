@@ -13,11 +13,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b1ad8df-2c72-40d8-b3cc-c94e121e7c0d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tools.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/tools.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ukf.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ukf.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ukf.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/ukf.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -152,8 +148,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/ukf.cpp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="483" lean-forward="true" selection-start-line="483" selection-end-line="483" />
+                <state relative-caret-position="166">
+                  <caret line="105" column="14" selection-start-line="105" selection-start-column="10" selection-end-line="105" selection-end-column="14" />
                   <folding>
                     <element signature="e#0#16#0" expanded="true" />
                   </folding>
@@ -183,6 +179,11 @@
         <option value="CMakeLists.txt" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>cout</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -326,7 +327,7 @@
       <workItem from="1534935211909" duration="681000" />
       <workItem from="1535027034711" duration="29000" />
       <workItem from="1535027088591" duration="479000" />
-      <workItem from="1535205180521" duration="7204000" />
+      <workItem from="1535205180521" duration="7971000" />
     </task>
     <servers />
   </component>
@@ -363,7 +364,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40205000" />
+    <option name="totallyTimeSpent" value="40972000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1368" extended-state="6" />
@@ -375,7 +376,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.29153606" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.20924765" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.54858935" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -500,8 +501,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ukf.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="483" lean-forward="true" selection-start-line="483" selection-end-line="483" />
+        <state relative-caret-position="166">
+          <caret line="105" column="14" selection-start-line="105" selection-start-column="10" selection-end-line="105" selection-end-column="14" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>

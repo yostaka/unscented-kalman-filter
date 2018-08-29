@@ -54,14 +54,6 @@ UKF::UKF() {
     0, 0, 0, 1, 0,
     0, 0, 0, 0, 1;
 
-  /**
-  TODO:
-
-  Complete the initialization. See ukf.h for other member properties.
-
-  Hint: one or more values initialized above might be wildly off...
-  */
-
   ///* State dimension
   n_x_ = 5;
 
@@ -143,14 +135,7 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
   long long current_timestamp = meas_package.timestamp_;
   double dt = (current_timestamp - previous_timestamp) / 1000000.0;
 
-    // skip laser for debugging
-    if (meas_package.sensor_type_ == MeasurementPackage::LASER) {
-        cout << "***** LASER MEASUREMENT *****" << endl;
-    } else {
-        cout << "***** RADAR MEASUREMENT *****" << endl;
-    }
-
-    Prediction(dt);
+  Prediction(dt);
 
   time_us_ = current_timestamp;
 
@@ -177,30 +162,16 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
  * measurement and this one.
  */
 void UKF::Prediction(double delta_t) {
-  /**
-  TODO:
-
-  Complete this function! Estimate the object's location. Modify the state
-  vector, x_. Predict sigma points, the state, and the state covariance matrix.
-  */
-
-  cout << "x_ = " << x_ << endl;
-  cout << "P_ = " << P_ << endl;
 
   // Generate sigma points
   // Xsig: 7 x 15 Matrix
   MatrixXd Xsig = MatrixXd(n_aug_, 2 * n_aug_ + 1);
   GenerateAugmentedSigmaPoints(&Xsig);
 
-  cout << "Xsig = " << Xsig << endl;
-
   // Predict sigma points
   // Xsig_pred_: 5 x 15 Matrix
   Xsig_pred_.fill(0.0);
   SigmaPointPrediction(Xsig, &Xsig_pred_, delta_t);
-
-  cout << "delta_t = " << delta_t << endl;
-  cout << "Xsig_pred_ = " << Xsig_pred_ << endl;
 
   // Calculate predicted mean and covariance
   // x_pred: 5 length vector
@@ -210,9 +181,6 @@ void UKF::Prediction(double delta_t) {
   PredictMeanAndCovariance(&x_pred, &P_pred);
   x_ = x_pred;
   P_ = P_pred;
-
-  cout << "x_pred = " << x_pred << endl;
-  cout << "P_pred = " << P_pred << endl;
 }
 
 /**
@@ -284,18 +252,12 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
     MatrixXd Tc = MatrixXd(n_x_, n_z);
     PredictRadarMeasurement(&z_pred, &S_pred, &Tc);
 
-    cout << "z_pred = " << z_pred << endl;
-    cout << "S_pred = " << S_pred << endl;
-    cout << "Tc = " << Tc << endl;
-
     // Update state vector x_ and covariance matrix P_ with radar measurement
     VectorXd z = VectorXd(n_z);
     z <<
         meas_package.raw_measurements_[0],
         meas_package.raw_measurements_[1],
         meas_package.raw_measurements_[2];
-
-    cout << "z = " << z << endl;
 
     UpdateStateWithRadarMeasurement(z, z_pred, S_pred, Tc);
 
@@ -324,12 +286,8 @@ void UKF::GenerateAugmentedSigmaPoints(MatrixXd *Xsig_out) {
     P_aug(5, 5) = std_a_ * std_a_;
     P_aug(6, 6) = std_yawdd_ * std_yawdd_;
 
-    cout << "P_aug = " << P_aug << endl;
-
     // calculate square root of P
     MatrixXd A = P_aug.llt().matrixL();
-
-    cout << "A = " << A << endl;
 
     // create augmented sigma points
     for (int i=0; i<n_aug_; i++) {
@@ -412,38 +370,24 @@ void UKF::SigmaPointPrediction(MatrixXd Xsig, MatrixXd* Xsig_out, double delta_t
 
 void UKF::PredictMeanAndCovariance(VectorXd* x_pred, MatrixXd* P_pred) {
 
-    // TODO: Complete implementation of this function
-    // Check all the matrix sizes (especially for n_x_ and n_aug_)
-
-    cout << "*** Entered PredictMeanAndCovariance()" << endl;
-
     VectorXd x = VectorXd(n_x_);
     MatrixXd P = MatrixXd(n_x_, n_x_);
 
     int na = 2 * n_aug_ + 1;
 
-    cout << "na = " << na << endl;
-
     // clear x and P
     x.fill(0.0);
     P.fill(0.0);
-
-    cout << "x = " << x << endl;
-    cout << "P = " << P << endl;
 
     // predict state mean
     for(int i=0; i<na; i++) {
         x += weights_(i) * Xsig_pred_.col(i);
     }
 
-    cout << "x = " << x << endl;
-
     // predict state covariance matrix
     for(int i=0; i<na; i++) {
         // state difference
         VectorXd x_diff = Xsig_pred_.col(i) - x;
-
-        cout << "x_diff = " << x_diff << endl;
 
         // angle normalization
         while (x_diff(3)> M_PI) { x_diff(3)-=2.*M_PI; }
@@ -451,8 +395,6 @@ void UKF::PredictMeanAndCovariance(VectorXd* x_pred, MatrixXd* P_pred) {
 
         P = P + weights_(i) * x_diff * x_diff.transpose();
     }
-
-    cout << "P = " << P << endl;
 
     *x_pred = x;
     *P_pred = P;
